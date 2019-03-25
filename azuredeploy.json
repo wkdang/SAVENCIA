@@ -143,14 +143,14 @@
       "metadata": {
         "description": "SAP HANA System ID"
       },
-      "defaultValue": "H10"
+      "defaultValue": "H18"
     },
     "HANANumber": {
       "type": "string",
       "metadata": {
         "description": "SAP HANA Instance Number"
       },
-      "defaultValue": "00"
+      "defaultValue": "02"
     },
     "ExistingNetworkResourceGroup": {
       "type": "string",
