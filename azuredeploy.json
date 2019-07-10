@@ -90,7 +90,7 @@
     },
     "ManagementSubnetPrefix": {
       "type": "string",
-      "defaultValue": "10.191.255.127/25",
+      "defaultValue": "10.191.255.128/25",
       "metadata": {
         "description": "The management subnet prefix"
       }
@@ -183,7 +183,7 @@
     },
     "DnSName": {
       "type": "string",
-      "defaultValue": "SAPB4D",
+      "defaultValue": "sapb4d",
       "metadata": {
         "description": "DNS Name for public IP only"
       }
