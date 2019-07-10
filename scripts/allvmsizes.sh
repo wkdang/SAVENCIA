@@ -376,7 +376,7 @@ if [ "$6" == "2.0" ]; then
 
   echo "hana 2.0 unrar start" >> /tmp/parameter.txt
   cd /mnt/resource/sapbits
-sudo unzip 51053787.zip
+sudo unzip 51053787.zip -d 51053787
   #sudo   unrar x 51053787_part1.exe
   echo "hana 2.0 unrar end" >> /tmp/parameter.txt
 
