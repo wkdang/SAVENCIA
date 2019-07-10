@@ -79,6 +79,7 @@ if [ "$7" == "RHEL" ]; then
 	
 else
 #install hana prereqs
+	sudo zypper install unzip
 	sudo zypper install -y glibc-2.22-51.6
 	sudo zypper install -y systemd-228-142.1
 	sudo zypper install -y unrar
@@ -361,11 +362,12 @@ fi
 if [ "$6" == "2.0" ]; then
   cd /mnt/resource/sapbits
   echo "hana 2.0 download start" >> /tmp/parameter.txt
-   /usr/bin/wget --quiet $Uri/SapBits/md5sums
-   /usr/bin/wget --quiet $Uri/SapBits/51053381_part1.exe
-   /usr/bin/wget --quiet $Uri/SapBits/51053381_part2.rar
-   /usr/bin/wget --quiet $Uri/SapBits/51053381_part3.rar
-   /usr/bin/wget --quiet $Uri/SapBits/51053381_part4.rar
+   #/usr/bin/wget --quiet $Uri/SapBits/md5sums
+   #/usr/bin/wget --quiet $Uri/SapBits/51053787_part1.exe
+   #/usr/bin/wget --quiet $Uri/SapBits/51053787_part2.rar
+   #/usr/bin/wget --quiet $Uri/SapBits/51053787_part3.rar
+   #/usr/bin/wget --quiet $Uri/SapBits/51053787_part4.rar
+   /usr/bin/wget --quiet $Uri/SapBits/51053787.zip
    /usr/bin/wget --quiet "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/hdbinst1.cfg"
   echo "hana 2.0 download end" >> /tmp/parameter.txt
 
@@ -374,7 +376,8 @@ if [ "$6" == "2.0" ]; then
 
   echo "hana 2.0 unrar start" >> /tmp/parameter.txt
   cd /mnt/resource/sapbits
-sudo   unrar x 51053381_part1.exe
+sudo unzip 51053787.zip
+  #sudo   unrar x 51053787_part1.exe
   echo "hana 2.0 unrar end" >> /tmp/parameter.txt
 
   echo "hana 2.0 prepare start" >> /tmp/parameter.txt
@@ -383,7 +386,7 @@ sudo   unrar x 51053381_part1.exe
   cd /mnt/resource/sapbits
    myhost=`hostname`
    sedcmd="s/REPLACE-WITH-HOSTNAME/$myhost/g"
-   sedcmd2="s/\/hana\/shared\/sapbits\/51052325/\/mnt\/resource\/sapbits\/51053381/g"
+   sedcmd2="s/\/hana\/shared\/sapbits\/51052325/\/mnt\/resource\/sapbits\/51053787/g"
    sedcmd3="s/root_user=root/root_user=$HANAUSR/g"
   #sedcmd4="s/root_password=AweS0me@PW/root_password=$HANAPWD/g"
    sedcmd4="s/password=AweS0me@PW/password=$HANAPWD/g"
@@ -395,8 +398,8 @@ sudo   unrar x 51053381_part1.exe
   echo "hana 2.0 prepare end" >> /tmp/parameter.txt
 
   echo "install hana 2.0 start" >> /tmp/parameter.txt
-   cd /mnt/resource/sapbits/51053381/DATA_UNITS/HDB_LCM_LINUX_X86_64
-   /mnt/resource/sapbits/51053381/DATA_UNITS/HDB_LCM_LINUX_X86_64/hdblcm -b --configfile /mnt/resource/sapbits/hdbinst-local.cfg
+   cd /mnt/resource/sapbits/51053787/DATA_UNITS/HDB_LCM_LINUX_X86_64
+   /mnt/resource/sapbits/51053787/DATA_UNITS/HDB_LCM_LINUX_X86_64/hdblcm -b --configfile /mnt/resource/sapbits/hdbinst-local.cfg
   echo "Log file written to '/var/tmp/hdb_H10_hdblcm_install_xxx/hdblcm.log' on host 'saphanaarm'." >> /tmp/parameter.txt
   echo "install hana 2.0 end" >> /tmp/parameter.txt
 
